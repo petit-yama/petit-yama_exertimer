@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>エクサタイマー</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+    <div id="all_content" class="all_content">
+        <h2>エクサタイマー</h2>
+
+        <div id="time_bar"><canvas id="myCanvas"></canvas></div>
+        <div id="btnarea">
+            <button type="button" id="start_button" class="start_pause_replay" onclick="startButton()">スタート！</button>
+            <button type="button" id="pause_button" class="start_pause_replay" onclick="pauseButton()"
+                disabled="true">一時停止</button>
+            <button type="button" id="replay_button" class="start_pause_replay" onclick="replayButton()"
+                disabled="true">再開</button>
+        </div>
+
+        <div id="video_player" class=".movie-wrap "></div>
+
+        <table>
+            <tr>
+                <td>
+                    <div class="toggle-container">
+                        <label class="toggle-button-4">
+                            <input type="checkbox" id="sound_switch" />
+                        </label>
+                        <label>通知音</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="toggle-container">
+                        <label class="toggle-button-4">
+                            <input type="checkbox" id="notification_switch" />
+                        </label>
+                        <label id="notification_switch_label">デスクトップ通知</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <audio id="audio"></audio>
+        <div id="time_setting">
+            <table>
+                <tr>
+                    <th></th>
+                    <th><button type="button" id="subtract_hour" class="add_min_button" onclick="addMin(15)">+
+                            15分</button></th>
+                    <th><button type="button" id="subtract_min" class="add_min_button" onclick="addMin(5)">+ 5分</button>
+                    </th>
+                    <th><button type="button" id="subtract_min" class="add_min_button" onclick="addMin(1)">+ 1分</button>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div id="goal_hour" class="time_set_num">0</div>
+                    </th>
+                    <th>
+                        <p class="time_set_str">時間</p>
+                    </th>
+                    <th>
+                        <div id="goal_min" class="time_set_num">30</div>
+                    </th>
+                    <th>
+                        <p class="time_set_str">分</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><button type="button" id="subtract_hour" class="sub_min_button" onclick="addMin(-15)">-
+                            15分</button></th>
+                    <th><button type="button" id="subtract_min" class="sub_min_button" onclick="addMin(-5)">-
+                            5分</button></th>
+                    <th><button type="button" id="subtract_min" class="sub_min_button" onclick="addMin(-1)">-
+                            1分</button></th>
+                </tr>
+            </table>
+        </div>
+
+        <div id="explanation">
+            座って作業する民よ、体を動かしてゆこう！</br>
+            タイマーが終了すると、運動に最適な動画がランダム表示されます。</br>
+            30分に1回程度、立ち上がって動くことが推奨されています。</br>
+        </div>
+
+        <p>youtubeの視聴アドレスを入力して、好きな動画を使用することもできます。</p>
+
+                    <label class="list_selectbox">
+                        <select name="list_name" id="select_list" onchange="changeList()">
+                            <option value="list_A" selected>再生リスト_A</option>
+                            <option value="list_B">再生リスト_B</option>
+                            <option value="list_C">再生リスト_C</option>
+                        </select>
+                    </label>
+                    <button class="video_testplay_button" onclick="videoTestPlay ()">動画表示確認</button>
+
+        <div class="accordion_all">
+            <details class="accordion">
+                <summary>再生リスト_A</summary>
+                <div id="list_A">
+                    <input id="list_A_001" type="text" onchange="videoListUpdate('list_A_001')"></input>
+                    <input id="list_A_002" type="text" onchange="videoListUpdate('list_A_002')"></input>
+                    <input id="list_A_003" type="text" onchange="videoListUpdate('list_A_003')"></input>
+                    <input id="list_A_004" type="text" onchange="videoListUpdate('list_A_004')"></input>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary>再生リスト_B</summary>
+                <div id="list_B">
+                    <input id="list_B_001" type="text" onchange="videoListUpdate('list_B_001')"></input>
+                    <input id="list_B_002" type="text" onchange="videoListUpdate('list_B_002')"></input>
+                    <input id="list_B_003" type="text" onchange="videoListUpdate('list_B_003')"></input>
+                    <input id="list_B_004" type="text" onchange="videoListUpdate('list_B_004')"></input>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary>再生リスト_C</summary>
+                <div id="list_C">
+                    <input id="list_C_001" type="text" onchange="videoListUpdate('list_C_001')"></input>
+                    <input id="list_C_002" type="text" onchange="videoListUpdate('list_C_002')"></input>
+                    <input id="list_C_003" type="text" onchange="videoListUpdate('list_C_003')"></input>
+                    <input id="list_C_004" type="text" onchange="videoListUpdate('list_C_004')"></input>
+                </div>
+            </details>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="javascript.js" defer></script>
+    <script type="text/javascript" src="worker.js" defer></script>
+</body>
+
+</html>
