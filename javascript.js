@@ -364,4 +364,9 @@ videoListHyoji("list_C_001");
 videoListHyoji("list_C_002");
 videoListHyoji("list_C_003");
 videoListHyoji("list_C_004");
-//NotificationSwitch();
+
+ Notification.requestPermission().then((result) => {
+    if(result == "granted") {
+         notificationCheckbox.checked = true;
+    }
+});
